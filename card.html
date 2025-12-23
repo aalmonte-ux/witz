@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Words I Want to Say</title>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Parisienne&display=swap" rel="stylesheet">
+<style>
+body {
+    margin: 0;
+    font-family: 'Merriweather', serif;
+    background: linear-gradient(135deg, #ffe6f0, #fff8f2);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 50px;
+    min-height: 100vh;
+}
+
+/* Container */
+#container {
+    text-align: center;
+    width: 90%;
+    max-width: 700px;
+    position: relative;
+}
+
+/* Headline */
+h1 {
+    font-family: 'Parisienne', cursive;
+    font-size: 60px;
+    color: #555;
+    margin-bottom: 40px;
+}
+
+/* Question */
+#question {
+    font-size: 28px;
+    margin-bottom: 40px;
+}
+#question button {
+    margin: 10px;
+    padding: 12px 30px;
+    font-size: 20px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    background: #ff6b81;
+    color: white;
+    transition: 0.3s ease;
+}
+#question button:hover {
+    background: #ff4b61;
+}
+
+/* Poem */
+#poem {
+    font-size: 20px;
+    line-height: 1.7;
+    margin-bottom: 40px;
+    display: none;
+    color: #444;
+    text-align: center;
+}
+
+/* Envelope */
+#envelopeContainer {
+    width: 320px;
+    height: 200px;
+    margin: 0 auto 40px auto;
+    perspective: 800px;
+    display: none;
+    position: relative;
+}
+#envelope {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(145deg, #fffdf7, #ffe6f0);
+    border-radius: 12px;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+    position: relative;
+    border: 2px solid #f5c2d3;
+    overflow: hidden;
+}
+#flap {
+    width: 0;
+    height: 0;
+    border-left: 160px solid transparent;
+    border-right: 160px solid transparent;
+    border-bottom: 120px solid #ffe6f0;
+    position: absolute;
+    top: -120px;
+    left: 0;
+    transform-origin: top center;
+    transition: transform 0.8s ease;
+}
+
+/* Heart button */
+#heartBtn {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    background: #ff6b81;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    font-size: 28px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+#heartBtn:hover {
+    transform: scale(1.2);
+    background: #ff4b61;
+}
+
+/* Letter */
+#letter {
+    display: none;
+    background: #fffdf7;
+    border-radius: 16px;
+    padding: 40px 32px;
+    margin: 0 auto;
+    text-align: left;
+    font-size: 20px;
+    line-height: 1.8;
+    max-width: 700px;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+    color: #333;
+    transform: translateY(120px);
+    opacity: 0;
+    transition: transform 1s ease, opacity 1s ease;
+}
+
+/* Back button */
+.backBtn {
+    display: none;
+    margin-top: 25px;
+    padding: 12px 28px;
+    font-size: 18px;
+    background: #ff6b81;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    color: white;
+}
+.backBtn:hover {
+    background: #ff4b61;
+}
+
+/* Music hidden */
+#musicContainer { display:none; }
+</style>
+</head>
+<body>
+
+<div id="container">
+
+<h1>Words I Want to Say</h1>
+
+<!-- First Question -->
+<div id="question">
+    Promise me that we’ll stay friends?<br><br>
+    <button onclick="chooseYes()">Yes</button>
+    <button onclick="chooseNo()">No</button>
+</div>
+
+<!-- Poem -->
+<div id="poem">
+I didn’t plan for this feeling.<br><br>
+It showed up quietly,<br>
+in the pauses between days,<br>
+in moments I didn’t think twice about—<br>
+until I did.<br><br>
+I’m not asking for anything.<br>
+I just wanted the truth<br>
+to exist somewhere<br>
+before I learned how to let it go.
+</div>
+
+<!-- Envelope -->
+<div id="envelopeContainer">
+    <div id="envelope">
+        <div id="flap"></div>
+        <button id="heartBtn" onclick="openLetter()">❤️</button>
+    </div>
+</div>
+
+<!-- Letter -->
+<div id="letter">
+<p>There’s someone I didn’t expect to feel this way about. He has messy hair and eyes that can seem a little intimidating at first, but once you get to know him, there’s a gentleness there that stands out. That contrast is something I’ve come to appreciate more than I thought I would.</p>
+
+<p>I used to say I didn’t care much for cheesy things or sweet talk, and that’s still true. But lately, I’ve noticed myself smiling without a clear reason, and most of the time, it traces back to him. It surprised me how quietly these feelings showed up, especially for someone I already knew.</p>
+
+<p>There was a moment when he suddenly stood out to me—nothing dramatic, just a realization I couldn’t ignore. Since then, I’ve caught myself looking for him without meaning to, noticing small things I never paid attention to before.</p>
+
+<p>You once asked me who, and I tried to brush it off. But the truth is, it’s hard to hide something when your heart reacts before your words can keep up.</p>
+
+<p>Before this year ends, I just wanted to be honest. Your seriousness sometimes scares me, but at the same time, it gives me a sense of calm. Your presence has a way of making things feel lighter, and I genuinely enjoy that.</p>
+
+<p>I’m saying this because you’re my friend, and I value honesty. I know I can be expressive, and I’m aware that my words can sometimes feel like too much. I hope you don’t see this as something strange—I just needed to say it out loud so I wouldn’t keep wondering about all the what-ifs.</p>
+
+<p>I know it’s a little funny that I’m liking a classmate again, and yes, it feels weird. You even tease me about my old crush, and honestly, you probably already noticed something. I don’t think you’re that oblivious.</p>
+
+<p>More than anything, I want you to know that this isn’t a demand or an expectation. I’m telling you because you deserve to know that you’re someone I genuinely admire. I’ve always had a soft spot for kind people. If you happen to like someone else, I understand—that’s completely okay.</p>
+
+<p>I also know that you’re healing, and I respect where you are right now. If this feels like bad timing, I’m sorry. I truly hope that one day, you’ll find someone who protects your peace, understands you, and treats your heart with care.</p>
+
+<p>Thank you for being exactly who you are, and for the kindness you show, even in ways you might not notice. If things get awkward, that’s okay—it’s just a crush, nothing more than that. Please don’t worry about me. I’m genuinely okay with seeing you happy.</p>
+
+<p>Sincerely,<br>Almira</p>
+</div>
+
+<button class="backBtn" onclick="backToPoem()">⬅️ Back</button>
+
+<!-- Music -->
+<div id="musicContainer">
+<iframe id="ytPlayer" width="0" height="0"
+src="https://www.youtube.com/embed/SKWxqYvqmmA?autoplay=1&loop=1&playlist=SKWxqYvqmmA"
+title="Spring Snow" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+</div>
+
+</div>
+
+<script>
+// YES / NO
+function chooseYes(){
+    document.getElementById('question').style.display = 'none';
+    document.getElementById('poem').style.display = 'block';
+    document.getElementById('envelopeContainer').style.display = 'block';
+    document.getElementById('musicContainer').style.display = 'block';
+}
+function chooseNo(){
+    document.getElementById('question').innerText = "Oh… that’s okay 💔";
+}
+
+// Open envelope -> flap flips & letter slides
+function openLetter(){
+    const flap = document.getElementById('flap');
+    flap.style.transform = 'rotateX(180deg)';
+    setTimeout(()=>{
+        document.getElementById('poem').style.display='none';
+        document.getElementById('envelopeContainer').style.display='none';
+        const letter = document.getElementById('letter');
+        letter.style.display='block';
+        setTimeout(()=>{letter.style.transform='translateY(0)'; letter.style.opacity=1;},50);
+        document.querySelector('.backBtn').style.display='inline-block';
+    },800);
+}
+
+// Back to poem/envelope
+function backToPoem(){
+    document.getElementById('letter').style.transform='translateY(120px)';
+    document.getElementById('letter').style.opacity=0;
+    setTimeout(()=>{
+        document.getElementById('letter').style.display='none';
+        document.getElementById('poem').style.display='block';
+        document.getElementById('envelopeContainer').style.display='block';
+        document.getElementById('flap').style.transform = 'rotateX(0deg)';
+        document.querySelector('.backBtn').style.display='none';
+    },500);
+}
+</script>
+
+</body>
+</html>
