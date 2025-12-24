@@ -15,7 +15,6 @@ body {
     align-items: flex-start;
     padding-top: 50px;
     min-height: 100vh;
-    overflow-y: auto; /* 🔒 allows full scrolling */
 }
 
 /* ===== TIMER ===== */
@@ -48,7 +47,7 @@ body {
     width: 90%;
     max-width: 700px;
     position: relative;
-    display: none;
+    display: none; /* hidden until timer ends */
 }
 
 /* Headline */
@@ -138,25 +137,26 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+#heartBtn:hover {
+    transform: scale(1.2);
+    background: #ff4b61;
 }
 
-/* Letter — FIXED (never cuts) */
+/* Letter */
 #letter {
     display: none;
     background: #fffdf7;
     border-radius: 16px;
     padding: 40px 32px;
-    margin: 0 auto 80px auto;
+    margin: 0 auto 40px auto;
     text-align: left;
     font-size: 20px;
     line-height: 1.8;
     max-width: 700px;
     box-shadow: 0 15px 50px rgba(0,0,0,0.2);
     color: #333;
-
-    max-height: none;
-    overflow: visible;
-
     transform: translateY(120px);
     opacity: 0;
     transition: transform 1s ease, opacity 1s ease;
@@ -165,7 +165,7 @@ h1 {
 /* Back button */
 .backBtn {
     display: none;
-    margin: 25px auto 80px auto;
+    margin-top: 25px;
     padding: 12px 28px;
     font-size: 18px;
     background: #ff6b81;
@@ -173,6 +173,9 @@ h1 {
     border-radius: 12px;
     cursor: pointer;
     color: white;
+}
+.backBtn:hover {
+    background: #ff4b61;
 }
 
 /* Music hidden */
@@ -217,7 +220,6 @@ before I learned how to let it go.
     </div>
 </div>
 
-<!-- FULL LETTER (UNCHANGED TEXT) -->
 <div id="letter">
 <p>There’s someone I didn’t expect to feel this way about. He has messy hair and eyes that can seem a little intimidating at first, but once you get to know him, there’s a gentleness there that stands out. That contrast is something I’ve come to appreciate more than I thought I would.</p>
 
@@ -229,15 +231,15 @@ before I learned how to let it go.
 
 <p>Before this year ends, I just wanted to be honest. Your seriousness sometimes scares me, but at the same time, it gives me a sense of calm. Your presence has a way of making things feel lighter, and I genuinely enjoy that.</p>
 
-<p>I’m saying this because you’re my friend, and I value honesty. I know I can be expressive, and I’m aware that my words can sometimes feel like too much.</p>
+<p>I’m saying this because you’re my friend, and I value honesty. I know I can be expressive, and I’m aware that my words can sometimes feel like too much. I hope you don’t see this as something strange—I just needed to say it out loud so I wouldn’t keep wondering about all the what-ifs.</p>
 
-<p>I know it’s a little funny that I’m liking a classmate again, and yes, it feels weird.</p>
+<p>I know it’s a little funny that I’m liking a classmate again, and yes, it feels weird. You even tease me about my old crush, and honestly, you probably already noticed something. I don’t think you’re that oblivious.</p>
 
-<p>More than anything, I want you to know that this isn’t a demand or an expectation.</p>
+<p>More than anything, I want you to know that this isn’t a demand or an expectation. I’m telling you because you deserve to know that you’re someone I genuinely admire. I’ve always had a soft spot for kind people. If you happen to like someone else, I understand—that’s completely okay.</p>
 
-<p>I also know that you’re healing, and I respect where you are right now.</p>
+<p>I also know that you’re healing, and I respect where you are right now. If this feels like bad timing, I’m sorry. I truly hope that one day, you’ll find someone who protects your peace, understands you, and treats your heart with care.</p>
 
-<p>Thank you for being exactly who you are.</p>
+<p>Thank you for being exactly who you are, and for the kindness you show, even in ways you might not notice. If things get awkward, that’s okay—it’s just a crush, nothing more than that. Please don’t worry about me. I’m genuinely okay with seeing you happy.</p>
 
 <p>Sincerely,<br>Almira</p>
 </div>
@@ -253,7 +255,7 @@ allow="autoplay"></iframe>
 </div>
 
 <script>
-// COUNTDOWN
+// ===== COUNTDOWN =====
 const targetDate = new Date("December 25, 2025 00:00:00").getTime();
 const timer = setInterval(() => {
     const now = new Date().getTime();
@@ -275,7 +277,7 @@ const timer = setInterval(() => {
         `${d}d ${h}h ${m}m ${s}s`;
 }, 1000);
 
-// ORIGINAL FUNCTIONS
+// ===== ORIGINAL JS (UNCHANGED) =====
 function chooseYes(){
     document.getElementById('question').style.display = 'none';
     document.getElementById('poem').style.display = 'block';
@@ -293,11 +295,8 @@ function openLetter(){
         document.getElementById('envelopeContainer').style.display='none';
         const letter = document.getElementById('letter');
         letter.style.display='block';
-        setTimeout(()=>{
-            letter.style.transform='translateY(0)';
-            letter.style.opacity=1;
-        },50);
-        document.querySelector('.backBtn').style.display='block';
+        setTimeout(()=>{letter.style.transform='translateY(0)'; letter.style.opacity=1;},50);
+        document.querySelector('.backBtn').style.display='inline-block';
     },800);
 }
 
@@ -308,7 +307,7 @@ function backToPoem(){
         document.getElementById('letter').style.display='none';
         document.getElementById('poem').style.display='block';
         document.getElementById('envelopeContainer').style.display='block';
-        document.getElementById('flap').style.transform='rotateX(0deg)';
+        document.getElementById('flap').style.transform = 'rotateX(0deg)';
         document.querySelector('.backBtn').style.display='none';
     },500);
 }
