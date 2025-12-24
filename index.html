@@ -28,6 +28,14 @@ body {
     box-shadow: 0 15px 40px rgba(0,0,0,0.15);
 }
 
+#christmasMsg {
+    font-family: 'Parisienne', cursive;
+    font-size: 48px;
+    color: #e63946;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px #ffa6b0;
+}
+
 #countdown {
     font-size: 64px;
     font-weight: 700;
@@ -150,7 +158,7 @@ h1 {
     background: #fffdf7;
     border-radius: 16px;
     padding: 40px 32px;
-    margin: 0 auto 40px auto;
+    margin: 0 auto;
     text-align: left;
     font-size: 20px;
     line-height: 1.8;
@@ -187,6 +195,7 @@ h1 {
 
 <!-- TIMER -->
 <div id="timerBox">
+    <div id="christmasMsg">MERRY CHRISTMAS!</div>
     <div id="countdown">00d 00h 00m 00s</div>
     <div id="timerMsg">I’m not good at coding but I tried</div>
 </div>
@@ -277,7 +286,7 @@ const timer = setInterval(() => {
         `${d}d ${h}h ${m}m ${s}s`;
 }, 1000);
 
-// ===== ORIGINAL JS (UNCHANGED) =====
+// ===== ORIGINAL JS =====
 function chooseYes(){
     document.getElementById('question').style.display = 'none';
     document.getElementById('poem').style.display = 'block';
