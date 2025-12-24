@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <title>Words I Want to Say</title>
 <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Parisienne&display=swap" rel="stylesheet">
-
 <style>
 body {
     margin: 0;
@@ -12,8 +11,7 @@ body {
     background: linear-gradient(135deg, #ffe6f0, #fff8f2);
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    padding-top: 50px;
+    align-items: center;
     min-height: 100vh;
 }
 
@@ -22,40 +20,58 @@ body {
     width: 100%;
     max-width: 600px;
     background: #fffdf7;
-    border-radius: 20px;
-    padding: 40px 20px;
+    border-radius: 25px;
+    padding: 60px 30px;
     text-align: center;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #christmasMsg {
     font-family: 'Parisienne', cursive;
-    font-size: 48px;
+    font-size: 60px;
     color: #e63946;
-    margin-bottom: 20px;
-    text-shadow: 2px 2px 5px #ffa6b0;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 8px #ffa6b0;
 }
 
 #countdown {
-    font-size: 64px;
+    font-size: 60px;
     font-weight: 700;
     color: #444;
-    letter-spacing: 2px;
+    margin-bottom: 20px;
 }
 
 #timerMsg {
-    margin-top: 20px;
-    font-size: 18px;
+    font-size: 20px;
     color: #666;
+    margin-bottom: 30px;
 }
 
-/* Container */
+#continueBtn {
+    display: none;
+    padding: 15px 40px;
+    font-size: 22px;
+    border: none;
+    border-radius: 15px;
+    background: #ff6b81;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+#continueBtn:hover {
+    background: #ff4b61;
+}
+
+/* Container for main content */
 #container {
     text-align: center;
     width: 90%;
     max-width: 700px;
     position: relative;
-    display: none; /* hidden until timer ends */
+    display: none; /* hidden until user presses continue */
 }
 
 /* Headline */
@@ -198,6 +214,7 @@ h1 {
     <div id="christmasMsg">MERRY CHRISTMAS!</div>
     <div id="countdown">00d 00h 00m 00s</div>
     <div id="timerMsg">I’m not good at coding but I tried</div>
+    <button id="continueBtn" onclick="showContent()">Continue</button>
 </div>
 
 <div id="container">
@@ -266,14 +283,17 @@ allow="autoplay"></iframe>
 <script>
 // ===== COUNTDOWN =====
 const targetDate = new Date("December 25, 2025 00:00:00").getTime();
+const countdownElem = document.getElementById("countdown");
+const continueBtn = document.getElementById("continueBtn");
+
 const timer = setInterval(() => {
     const now = new Date().getTime();
     const diff = targetDate - now;
 
     if (diff <= 0) {
         clearInterval(timer);
-        document.getElementById("timerBox").style.display = "none";
-        document.getElementById("container").style.display = "block";
+        countdownElem.textContent = "00d 00h 00m 00s";
+        continueBtn.style.display = "inline-block"; // show continue button
         return;
     }
 
@@ -282,9 +302,14 @@ const timer = setInterval(() => {
     const m = Math.floor((diff / (1000 * 60)) % 60);
     const s = Math.floor((diff / 1000) % 60);
 
-    document.getElementById("countdown").textContent =
-        `${d}d ${h}h ${m}m ${s}s`;
+    countdownElem.textContent = `${d}d ${h}h ${m}m ${s}s`;
 }, 1000);
+
+// Show main content after user clicks Continue
+function showContent() {
+    document.getElementById("timerBox").style.display = "none";
+    document.getElementById("container").style.display = "block";
+}
 
 // ===== ORIGINAL JS =====
 function chooseYes(){
