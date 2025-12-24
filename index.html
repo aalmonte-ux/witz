@@ -15,6 +15,7 @@ body {
     align-items: flex-start;
     padding-top: 50px;
     min-height: 100vh;
+    overflow-y: auto; /* 🔒 allows full scrolling */
 }
 
 /* ===== TIMER ===== */
@@ -26,8 +27,6 @@ body {
     padding: 40px 20px;
     text-align: center;
     box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-    position: relative;
-    overflow: hidden;
 }
 
 #countdown {
@@ -35,7 +34,6 @@ body {
     font-weight: 700;
     color: #444;
     letter-spacing: 2px;
-    text-shadow: 0 0 12px #ffb6c1;
 }
 
 #timerMsg {
@@ -43,28 +41,8 @@ body {
     font-size: 18px;
     color: #666;
 }
-#timerMsg::after {
-    content: " 🎄 Merry Christmas 🎄";
-    display: block;
-    margin-top: 10px;
-    color: #c0392b;
-    font-weight: 600;
-}
 
-/* Snow */
-.snowflake {
-    position: absolute;
-    top: -10px;
-    color: white;
-    font-size: 18px;
-    opacity: 0.8;
-    animation: fall linear infinite;
-}
-@keyframes fall {
-    to { transform: translateY(110vh); }
-}
-
-/* ===== MAIN CONTAINER ===== */
+/* Container */
 #container {
     text-align: center;
     width: 90%;
@@ -143,7 +121,7 @@ h1 {
     transition: transform 0.8s ease;
 }
 
-/* Heart */
+/* Heart button */
 #heartBtn {
     position: absolute;
     top: 55%;
@@ -160,38 +138,34 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: transform 0.3s ease, background 0.3s ease;
-}
-#heartBtn:hover {
-    transform: scale(1.2);
-    background: #ff4b61;
 }
 
-/* ===== LETTER (FIXED, NOT CUT) ===== */
+/* Letter — FIXED (never cuts) */
 #letter {
     display: none;
     background: #fffdf7;
     border-radius: 16px;
     padding: 40px 32px;
-    margin: 0 auto;
+    margin: 0 auto 80px auto;
     text-align: left;
     font-size: 20px;
     line-height: 1.8;
     max-width: 700px;
     box-shadow: 0 15px 50px rgba(0,0,0,0.2);
     color: #333;
+
+    max-height: none;
+    overflow: visible;
+
     transform: translateY(120px);
     opacity: 0;
     transition: transform 1s ease, opacity 1s ease;
-
-    max-height: 70vh;
-    overflow-y: auto;
 }
 
-/* Back */
+/* Back button */
 .backBtn {
     display: none;
-    margin-top: 25px;
+    margin: 25px auto 80px auto;
     padding: 12px 28px;
     font-size: 18px;
     background: #ff6b81;
@@ -200,11 +174,8 @@ h1 {
     cursor: pointer;
     color: white;
 }
-.backBtn:hover {
-    background: #ff4b61;
-}
 
-/* Music */
+/* Music hidden */
 #musicContainer { display:none; }
 </style>
 </head>
@@ -246,12 +217,27 @@ before I learned how to let it go.
     </div>
 </div>
 
+<!-- FULL LETTER (UNCHANGED TEXT) -->
 <div id="letter">
-<p>There’s someone I didn’t expect to feel this way about. He has messy hair and eyes that can seem a little intimidating at first, but once you get to know him, there’s a gentleness there that stands out.</p>
+<p>There’s someone I didn’t expect to feel this way about. He has messy hair and eyes that can seem a little intimidating at first, but once you get to know him, there’s a gentleness there that stands out. That contrast is something I’ve come to appreciate more than I thought I would.</p>
 
-<p>I used to say I didn’t care much for cheesy things or sweet talk, but lately I’ve noticed myself smiling without a reason—and most of the time, it traces back to him.</p>
+<p>I used to say I didn’t care much for cheesy things or sweet talk, and that’s still true. But lately, I’ve noticed myself smiling without a clear reason, and most of the time, it traces back to him. It surprised me how quietly these feelings showed up, especially for someone I already knew.</p>
 
-<p>Before this year ends, I just wanted to be honest. This isn’t a demand or an expectation. I just needed to say it out loud.</p>
+<p>There was a moment when he suddenly stood out to me—nothing dramatic, just a realization I couldn’t ignore. Since then, I’ve caught myself looking for him without meaning to, noticing small things I never paid attention to before.</p>
+
+<p>You once asked me who, and I tried to brush it off. But the truth is, it’s hard to hide something when your heart reacts before your words can keep up.</p>
+
+<p>Before this year ends, I just wanted to be honest. Your seriousness sometimes scares me, but at the same time, it gives me a sense of calm. Your presence has a way of making things feel lighter, and I genuinely enjoy that.</p>
+
+<p>I’m saying this because you’re my friend, and I value honesty. I know I can be expressive, and I’m aware that my words can sometimes feel like too much.</p>
+
+<p>I know it’s a little funny that I’m liking a classmate again, and yes, it feels weird.</p>
+
+<p>More than anything, I want you to know that this isn’t a demand or an expectation.</p>
+
+<p>I also know that you’re healing, and I respect where you are right now.</p>
+
+<p>Thank you for being exactly who you are.</p>
 
 <p>Sincerely,<br>Almira</p>
 </div>
@@ -267,17 +253,6 @@ allow="autoplay"></iframe>
 </div>
 
 <script>
-// SNOW
-for (let i = 0; i < 25; i++) {
-    const s = document.createElement("div");
-    s.className = "snowflake";
-    s.textContent = "❄";
-    s.style.left = Math.random() * 100 + "%";
-    s.style.animationDuration = (5 + Math.random() * 5) + "s";
-    s.style.fontSize = (12 + Math.random() * 12) + "px";
-    document.getElementById("timerBox").appendChild(s);
-}
-
 // COUNTDOWN
 const targetDate = new Date("December 25, 2025 00:00:00").getTime();
 const timer = setInterval(() => {
@@ -300,34 +275,40 @@ const timer = setInterval(() => {
         `${d}d ${h}h ${m}m ${s}s`;
 }, 1000);
 
-// ORIGINAL LOGIC
+// ORIGINAL FUNCTIONS
 function chooseYes(){
-    question.style.display='none';
-    poem.style.display='block';
-    envelopeContainer.style.display='block';
-    musicContainer.style.display='block';
+    document.getElementById('question').style.display = 'none';
+    document.getElementById('poem').style.display = 'block';
+    document.getElementById('envelopeContainer').style.display = 'block';
+    document.getElementById('musicContainer').style.display = 'block';
 }
 function chooseNo(){
-    question.innerText="Oh… that’s okay 💔";
+    document.getElementById('question').innerText = "Oh… that’s okay 💔";
 }
+
 function openLetter(){
-    flap.style.transform='rotateX(180deg)';
+    document.getElementById('flap').style.transform = 'rotateX(180deg)';
     setTimeout(()=>{
-        poem.style.display='none';
-        envelopeContainer.style.display='none';
+        document.getElementById('poem').style.display='none';
+        document.getElementById('envelopeContainer').style.display='none';
+        const letter = document.getElementById('letter');
         letter.style.display='block';
-        setTimeout(()=>{letter.style.transform='translateY(0)';letter.style.opacity=1;},50);
-        document.querySelector('.backBtn').style.display='inline-block';
+        setTimeout(()=>{
+            letter.style.transform='translateY(0)';
+            letter.style.opacity=1;
+        },50);
+        document.querySelector('.backBtn').style.display='block';
     },800);
 }
+
 function backToPoem(){
-    letter.style.transform='translateY(120px)';
-    letter.style.opacity=0;
+    document.getElementById('letter').style.transform='translateY(120px)';
+    document.getElementById('letter').style.opacity=0;
     setTimeout(()=>{
-        letter.style.display='none';
-        poem.style.display='block';
-        envelopeContainer.style.display='block';
-        flap.style.transform='rotateX(0deg)';
+        document.getElementById('letter').style.display='none';
+        document.getElementById('poem').style.display='block';
+        document.getElementById('envelopeContainer').style.display='block';
+        document.getElementById('flap').style.transform='rotateX(0deg)';
         document.querySelector('.backBtn').style.display='none';
     },500);
 }
